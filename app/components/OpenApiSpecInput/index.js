@@ -62,23 +62,6 @@ function OpenApiSpecInput({ onConfirm, specs, api }) {
               </ListGroupItem>
             </ListGroup>
           </Card>
-
-          <Card small className="mb-4">
-            <CardHeader className="border-bottom">
-              <h6 className="m-0">OpenAPI Specification URL</h6>
-            </CardHeader>
-            <CardBody>
-              <h4>{specs}</h4>
-              <Button
-                theme="primary"
-                onClick={() => {
-                  setOpen(true);
-                }}
-              >
-                Edit
-              </Button>
-            </CardBody>
-          </Card>
         </Col>
         <Col lg="6" />
       </Row>

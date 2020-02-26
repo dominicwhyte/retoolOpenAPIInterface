@@ -19,6 +19,7 @@ import {
   globalInfoMessage,
   requestSetOpenApiSpecs,
 } from 'containers/App/actions';
+import TagEndpointsGroup from 'components/TagEndpointsGroup';
 import makeSelectOpenApiSpecsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -29,6 +30,7 @@ export function OpenApiSpecsPage({
   specs,
   dispatchRequestSetOpenApiSpecs,
   api,
+  history,
 }) {
   useInjectReducer({ key: 'openApiSpecsPage', reducer });
   useInjectSaga({ key: 'openApiSpecsPage', saga });
@@ -44,6 +46,26 @@ export function OpenApiSpecsPage({
           dispatchRequestSetOpenApiSpecs(newSpecs);
         }}
       />
+      {api ? (
+        <div>
+          {api.tags.map((tag, idx) => (
+            <div key={idx}>
+              <TagEndpointsGroup
+                paths={api.paths}
+                tag={tag}
+                onEndpointPressed={endpoint => {
+                  console.log('pressed');
+                  history.push({
+                    pathname: '/endpoint',
+                    state: { endpoint },
+                  });
+                }}
+              />
+              <br />
+            </div>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 }

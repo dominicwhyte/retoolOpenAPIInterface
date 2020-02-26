@@ -7,10 +7,5 @@ export default function() {
       to: '/interface',
       icon: FaPlug,
     },
-    {
-      title: ' Provide Specs',
-      to: '/specs',
-      icon: FaPlug,
-    },
   ];
 }

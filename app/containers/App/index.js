@@ -29,7 +29,9 @@ import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import OpenApiSpecsPage from 'containers/OpenApiSpecsPage/Loadable';
 import InterfacePage from 'containers/InterfacePage/Loadable';
+import EndpointPage from 'containers/EndpointPage/Loadable';
 import { useInjectSaga } from 'utils/injectSaga';
+import ScrollToTop from './scrollToTop';
 import reducer from './reducer';
 import WithNavBar from '../../components/WithNavBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -95,9 +97,10 @@ export function App({
 
   return (
     <div>
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route
+      <ScrollToTop>
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          {/* <Route
           exact
           path="/interface"
           render={props => (
@@ -105,18 +108,25 @@ export function App({
               <InterfacePage {...props} />
             </WithNavBar>
           )}
-        />
-        <Route
-          exact
-          path="/specs"
-          render={props => (
-            <WithNavBar title="Some Test" subtitle="Some Sub title">
-              <OpenApiSpecsPage {...props} />
-            </WithNavBar>
-          )}
-        />
-        <Route component={NotFoundPage} />
-      </Switch>
+        /> */}
+          <Route
+            exact
+            path="/interface"
+            render={props => (
+              <WithNavBar title="Some Test" subtitle="Some Sub title">
+                <OpenApiSpecsPage {...props} />
+              </WithNavBar>
+            )}
+          />
+
+          <Route
+            exact
+            path="/endpoint"
+            render={props => <EndpointPage {...props} />}
+          />
+          <Route component={NotFoundPage} />
+        </Switch>
+      </ScrollToTop>
     </div>
   );
 }
