@@ -28,10 +28,17 @@ import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess';
 /* eslint-enable import/no-unresolved, import/extensions */
 
+import {
+  ToastProvider,
+  DefaultToastContainer,
+} from 'react-toast-notifications';
 import configureStore from './configureStore';
-
 // Import i18n messages
 import { translationMessages } from './i18n';
+
+export const MyCustomToastContainer = props => (
+  <DefaultToastContainer {...props} style={{ zIndex: 9999 }} />
+);
 
 // Create redux store with history
 const initialState = {};
@@ -43,7 +50,11 @@ const render = messages => {
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
-          <App />
+          <ToastProvider
+            components={{ ToastContainer: MyCustomToastContainer }}
+          >
+            <App />
+          </ToastProvider>
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
