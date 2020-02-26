@@ -20,6 +20,7 @@ import {
   GLOBAL_ERROR_MESSAGE,
   GLOBAL_INFO_MESSAGE,
   REQUEST_SET_OPEN_API_SPECS,
+  SET_OPEN_API_SPECS,
 } from './constants';
 
 /**
@@ -56,9 +57,10 @@ export function requestSetOpenApiSpecs(specs) {
   };
 }
 
-export function setOpenApiSpecs(specs) {
+export function setOpenApiSpecs(api, specs) {
   return {
-    type: REQUEST_SET_OPEN_API_SPECS,
+    type: SET_OPEN_API_SPECS,
+    api,
     specs,
   };
 }

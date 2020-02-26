@@ -22,10 +22,14 @@ import {
 import makeSelectOpenApiSpecsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { selectOpenApiSpecs } from '../App/selectors';
+import { selectOpenApiSpecs, selectOpenApi } from '../App/selectors';
 import OpenApiSpecInput from '../../components/OpenApiSpecInput';
 
-export function OpenApiSpecsPage({ specs, dispatchRequestSetOpenApiSpecs }) {
+export function OpenApiSpecsPage({
+  specs,
+  dispatchRequestSetOpenApiSpecs,
+  api,
+}) {
   useInjectReducer({ key: 'openApiSpecsPage', reducer });
   useInjectSaga({ key: 'openApiSpecsPage', saga });
 
@@ -34,7 +38,8 @@ export function OpenApiSpecsPage({ specs, dispatchRequestSetOpenApiSpecs }) {
       {/* <h1>{JSON.stringify(specs)}</h1> */}
       {/* <ReactJson src={specs} enableClipboard={false} onEdit={false} /> */}
       <OpenApiSpecInput
-        originalSpecs={JSON.stringify(specs)}
+        specs={specs}
+        api={api}
         onConfirm={newSpecs => {
           dispatchRequestSetOpenApiSpecs(newSpecs);
         }}
@@ -44,13 +49,15 @@ export function OpenApiSpecsPage({ specs, dispatchRequestSetOpenApiSpecs }) {
 }
 
 OpenApiSpecsPage.propTypes = {
-  specs: PropTypes.object,
+  specs: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
+  api: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   dispatchRequestSetOpenApiSpecs: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
   openApiSpecsPage: makeSelectOpenApiSpecsPage(),
   specs: selectOpenApiSpecs(),
+  api: selectOpenApi(),
 });
 
 function mapDispatchToProps(dispatch) {

@@ -30,8 +30,15 @@ const selectOpenApiSpecs = () =>
     globalState => globalState.specs,
   );
 
+const selectOpenApi = () =>
+  createSelector(
+    selectGlobal,
+    globalState => globalState.api,
+  );
+
 export {
   selectGlobal,
+  selectOpenApi,
   makeSelectError,
   makeSelectSuccess,
   makeSelectInfo,

@@ -18,12 +18,11 @@ import {
   GLOBAL_INFO_MESSAGE,
 } from './constants';
 
-import demoOpenAPISpecs from '../../data/demoOpenAPISpecs';
-
 // The initial state of the App
 export const initialState = {
   loading: false,
-  specs: demoOpenAPISpecs,
+  specs: false,
+  api: false,
   error: false,
   info: false,
   success: false,
@@ -37,11 +36,14 @@ const appReducer = (state = initialState, action) =>
         draft.success = action.success;
         break;
       case GLOBAL_ERROR_MESSAGE:
-        console.log('GLOBAL_ERROR_MESSAGE in reducer: ', action.error);
         draft.error = action.error;
         break;
       case GLOBAL_INFO_MESSAGE:
         draft.info = action.info;
+        break;
+      case SET_OPEN_API_SPECS:
+        draft.api = action.api;
+        draft.specs = action.specs;
         break;
     }
   });

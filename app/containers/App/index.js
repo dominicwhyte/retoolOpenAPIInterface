@@ -39,6 +39,7 @@ import {
   globalSuccessMessage,
   globalErrorMessage,
   globalInfoMessage,
+  requestSetOpenApiSpecs,
 } from './actions';
 
 export function App({
@@ -48,10 +49,15 @@ export function App({
   dispatchGlobalErrorMessage,
   dispatchGlobalInfoMessage,
   dispatchGlobalSuccessMessage,
-  appState,
+  dispatchRequestSetOpenApiSpecs,
 }) {
   useInjectSaga({ key: 'appPage', saga });
   useInjectReducer({ key: 'dashboardPage', reducer });
+
+  const demoOpenAPISpec = 'https://petstore.swagger.io/v2/swagger.json';
+  useEffect(() => {
+    dispatchRequestSetOpenApiSpecs(demoOpenAPISpec);
+  }, []);
 
   // Notifications
   const { addToast } = useToasts();
@@ -126,6 +132,9 @@ export function mapDispatchToProps(dispatch) {
     dispatchGlobalInfoMessage(info) {
       return dispatch(globalInfoMessage(info));
     },
+    dispatchRequestSetOpenApiSpecs(specs) {
+      return dispatch(requestSetOpenApiSpecs(specs));
+    },
   };
 }
 
@@ -134,6 +143,7 @@ App.propTypes = {
   dispatchGlobalSuccessMessage: PropTypes.func,
   dispatchGlobalInfoMessage: PropTypes.func,
   dispatchFetchSegment: PropTypes.func,
+  dispatchRequestSetOpenApiSpecs: PropTypes.func,
   success: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   info: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
