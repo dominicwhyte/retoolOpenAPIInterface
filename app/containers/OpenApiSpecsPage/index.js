@@ -36,8 +36,6 @@ export function OpenApiSpecsPage({ specs, dispatchRequestSetOpenApiSpecs }) {
       <OpenApiSpecInput
         originalSpecs={JSON.stringify(specs)}
         onConfirm={newSpecs => {
-          console.log('confirm');
-          // dispatchGlobalSuccessMessage('Yay!');
           dispatchRequestSetOpenApiSpecs(newSpecs);
         }}
       />
@@ -58,7 +56,6 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatchRequestSetOpenApiSpecs(specs) {
-      console.log('test');
       return dispatch(requestSetOpenApiSpecs(specs));
     },
   };

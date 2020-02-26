@@ -56,8 +56,6 @@ export function App({
   // Notifications
   const { addToast } = useToasts();
 
-  console.log(' appState:');
-  console.log(appState);
   useEffect(() => {
     if (error) {
       addToast(error, {
@@ -91,8 +89,6 @@ export function App({
 
   return (
     <div>
-      <h1>Test {error}</h1>
-      <button onClick={() => console.log(appState)}>test</button>
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route
@@ -141,14 +137,12 @@ App.propTypes = {
   success: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   error: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   info: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-  appState: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({
   success: makeSelectSuccess(),
   error: makeSelectError(),
   info: makeSelectInfo(),
-  appState: makeSelectAppState(),
 });
 
 const withConnect = connect(

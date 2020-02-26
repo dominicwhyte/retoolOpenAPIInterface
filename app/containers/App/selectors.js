@@ -7,24 +7,6 @@ import { initialState } from './reducer';
 
 const selectGlobal = state => state.global || initialState;
 
-const selectRouter = state => state.router;
-
-// Note: this simply makes a selector that can be used to get a memoized version of the currentUser
-
-const makeSelectUser = () =>
-  createSelector(
-    selectGlobal,
-    globalState => globalState.user,
-  );
-
-const makeSelectLocation = () =>
-  createSelector(
-    selectRouter,
-    routerState => routerState.location,
-  );
-
-// TODO: delete unnecessary ones
-
 const makeSelectError = () =>
   createSelector(
     selectGlobal,
@@ -48,19 +30,10 @@ const selectOpenApiSpecs = () =>
     globalState => globalState.specs,
   );
 
-const makeSelectAppState = () =>
-  createSelector(
-    selectGlobal,
-    substate => substate,
-  );
-
 export {
   selectGlobal,
   makeSelectError,
   makeSelectSuccess,
-  makeSelectUser,
   makeSelectInfo,
-  makeSelectLocation,
   selectOpenApiSpecs,
-  makeSelectAppState,
 };
