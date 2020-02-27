@@ -54,7 +54,6 @@ function TagEndpointsGroup({ paths, tag, onEndpointPressed }) {
       }
     });
   });
-  console.log('endpoints', endpoints);
 
   return (
     <div>

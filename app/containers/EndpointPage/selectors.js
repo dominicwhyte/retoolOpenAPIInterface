@@ -21,5 +21,21 @@ const makeSelectEndpointPage = () =>
     substate => substate,
   );
 
+const selectRequestResponse = () =>
+  createSelector(
+    selectEndpointPageDomain,
+    substate => substate.requestResponse,
+  );
+
+const selectRequestLoading = () =>
+  createSelector(
+    selectEndpointPageDomain,
+    substate => substate.requestLoading,
+  );
+
 export default makeSelectEndpointPage;
-export { selectEndpointPageDomain };
+export {
+  selectEndpointPageDomain,
+  selectRequestResponse,
+  selectRequestLoading,
+};

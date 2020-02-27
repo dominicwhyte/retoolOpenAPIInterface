@@ -4,7 +4,7 @@ export default function() {
   return [
     {
       title: ' OpenAPI Interface',
-      to: '/interface',
+      to: '/',
       icon: FaPlug,
     },
   ];

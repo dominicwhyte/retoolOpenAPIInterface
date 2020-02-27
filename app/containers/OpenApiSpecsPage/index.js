@@ -4,7 +4,7 @@
  *
  */
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
@@ -20,6 +20,7 @@ import {
   requestSetOpenApiSpecs,
 } from 'containers/App/actions';
 import TagEndpointsGroup from 'components/TagEndpointsGroup';
+import { clearRequestData } from 'containers/EndpointPage/actions';
 import makeSelectOpenApiSpecsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
@@ -31,9 +32,14 @@ export function OpenApiSpecsPage({
   dispatchRequestSetOpenApiSpecs,
   api,
   history,
+  dispatchClearRequestData,
 }) {
   useInjectReducer({ key: 'openApiSpecsPage', reducer });
   useInjectSaga({ key: 'openApiSpecsPage', saga });
+
+  useEffect(() => {
+    dispatchClearRequestData();
+  }, []);
 
   return (
     <div>
@@ -74,6 +80,7 @@ OpenApiSpecsPage.propTypes = {
   specs: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
   api: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   dispatchRequestSetOpenApiSpecs: PropTypes.func,
+  dispatchClearRequestData: PropTypes.func,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -86,6 +93,9 @@ function mapDispatchToProps(dispatch) {
   return {
     dispatchRequestSetOpenApiSpecs(specs) {
       return dispatch(requestSetOpenApiSpecs(specs));
+    },
+    dispatchClearRequestData() {
+      return dispatch(clearRequestData());
     },
   };
 }

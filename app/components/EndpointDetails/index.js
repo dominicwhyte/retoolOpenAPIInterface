@@ -18,8 +18,6 @@ import {
 } from 'shards-react';
 
 function EndpointDetails({ endpoint }) {
-  console.log('endpoint');
-  console.log(endpoint);
   const { responses } = endpoint.subPathDetails;
   return (
     <Card small className="user-details mb-4">

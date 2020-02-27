@@ -25,10 +25,10 @@ import {
 
 import { withRouter } from 'react-router';
 import { useInjectReducer } from 'utils/injectReducer';
-import HomePage from 'containers/HomePage/Loadable';
+
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import OpenApiSpecsPage from 'containers/OpenApiSpecsPage/Loadable';
-import InterfacePage from 'containers/InterfacePage/Loadable';
+
 import EndpointPage from 'containers/EndpointPage/Loadable';
 import { useInjectSaga } from 'utils/injectSaga';
 import ScrollToTop from './scrollToTop';
@@ -99,19 +99,9 @@ export function App({
     <div>
       <ScrollToTop>
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          {/* <Route
-          exact
-          path="/interface"
-          render={props => (
-            <WithNavBar title="Some Test" subtitle="Some Sub title">
-              <InterfacePage {...props} />
-            </WithNavBar>
-          )}
-        /> */}
           <Route
             exact
-            path="/interface"
+            path="/"
             render={props => (
               <WithNavBar title="Some Test" subtitle="Some Sub title">
                 <OpenApiSpecsPage {...props} />
