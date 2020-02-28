@@ -76,7 +76,7 @@ export function OpenApiSpecsPage({
         )}
       </Row>
 
-      {api ? (
+      {api && api.tags ? (
         <div>
           {api.tags.map((tag, idx) => (
             <div key={idx}>

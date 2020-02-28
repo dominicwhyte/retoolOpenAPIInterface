@@ -108,6 +108,7 @@ function AuthorizationModal({
                 newCredentials,
                 currentSecurityDefinition.name,
               );
+              setCurrentSecurityDefinition(false);
             }}
           >
             Authorize

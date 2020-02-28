@@ -6,7 +6,7 @@
 
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { FaLock } from 'react-icons/fa';
+import { FaLock, FaUnlock } from 'react-icons/fa';
 import {
   Card,
   CardHeader,
@@ -69,7 +69,11 @@ function AuthorizationCard({
 
                   return (
                     <span className="d-flex mb-2" key={idx}>
-                      <FaLock />
+                      {credentials[securityDefinition.name] ? (
+                        <FaUnlock style={{ color: 'green' }} />
+                      ) : (
+                        <FaLock />
+                      )}
                       <span>&nbsp;</span>
                       <strong className="mr-1">
                         {' '}
