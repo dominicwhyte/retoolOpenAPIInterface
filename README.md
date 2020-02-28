@@ -1,7 +1,7 @@
-# [openapiinterface.com](openapiinterface.com)
+# [openapiinterface.com](https://openapiinterface.com)
 
 ## What it is
-[openapiinterface.com](openapiinterface.com) is an interface that: 
+[openapiinterface.com](https://openapiinterface.com) is an interface that: 
 1. Lets users provide an OpenAPI Specification like https://petstore.swagger.io/v2/swagger.json
 2. Generates a UI that allows users to make requests to the documented API directly from the browser.
 3. Shows the resulting payload from the executed API query.
