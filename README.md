@@ -12,6 +12,7 @@
 2. Supporting http (not just https) requests for APIs that support it
 3. Uploading files
 4. Basic testing. This is the next task I would have worked on. Even basic tests for making sure that the various types of requests with the various types of inputs return the desired outputs would be very helpful.
+5. Cookie parameters are not yet supported
 
 ## APIs I tested with
 1. [https://raw.githubusercontent.com/dominicwhyte/TestFiles/master/swagger.json](https://raw.githubusercontent.com/dominicwhyte/TestFiles/master/swagger.json)
