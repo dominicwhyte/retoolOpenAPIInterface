@@ -48,11 +48,7 @@ const appReducer = (state = initialState, action) =>
         draft.specs = action.specs;
         break;
       case SET_CREDENTIALS:
-        console.log('delta credentials');
-        console.log(action.credential);
         draft.credentials[action.securityDefinitionName] = action.credential;
-        console.log('NEW credentials');
-        console.log(draft);
         break;
     }
   });

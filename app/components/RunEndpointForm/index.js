@@ -47,7 +47,7 @@ function RunEndpointForm({
 }) {
   function componentForParameter(parameter) {
     const name = `${parameter.name} - ${parameter.description}`;
-    console.log('parameter', parameter);
+
     switch (parameter.type) {
       // TODO: add inputs for different cases
       case 'integer':
@@ -117,7 +117,6 @@ function RunEndpointForm({
     );
   }
 
-  console.log('params', parameters);
   return (
     <Card>
       <CardHeader className="border-bottom p-0">

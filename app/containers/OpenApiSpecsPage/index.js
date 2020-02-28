@@ -84,7 +84,6 @@ export function OpenApiSpecsPage({
                 paths={api.paths}
                 tag={tag}
                 onEndpointPressed={endpoint => {
-                  console.log('pressed');
                   history.push({
                     pathname: '/endpoint',
                     state: { endpoint },

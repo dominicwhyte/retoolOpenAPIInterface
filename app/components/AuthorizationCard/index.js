@@ -47,7 +47,6 @@ function AuthorizationCard({
   credentials,
   dispatchSetCredentials,
 }) {
-  console.log('securityDefinitions', securityDefinitions);
   const [currentSecurityDefinition, setCurrentSecurityDefinition] = useState(
     false,
   );

@@ -73,6 +73,7 @@ function TagEndpointsGroup({ paths, tag, onEndpointPressed }) {
             onClick={() => {
               onEndpointPressed(endpoint);
             }}
+            style={{ cursor: 'pointer' }}
           >
             <Row className="px-3">
               <Col lg="12" sm="1" className="user-teams__image my-auto p-0">

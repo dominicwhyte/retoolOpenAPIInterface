@@ -41,10 +41,10 @@ function issueRequest(
     'Content-Type': contentType,
     ...additionalHeaders,
   };
-  console.log('requestUrl to use', requestUrl);
-  console.log('bodyToUse');
-  console.log(bodyToUse);
-  console.log('headers', headers);
+  // console.log('requestUrl to use', requestUrl);
+  // console.log('bodyToUse');
+  // console.log(bodyToUse);
+  // console.log('headers', headers);
 
   return new Promise((resolve, reject) => {
     let responseStatus;
@@ -55,18 +55,13 @@ function issueRequest(
       body: bodyToUse,
     })
       .then(function _(result) {
-        console.log('yay', result);
-
         responseStatus = result.status;
-
         return result.text();
       })
       .then(function _(result) {
-        console.log('SUCCESS');
         return resolve({ result, status: responseStatus });
       })
       .catch(function _(err) {
-        console.log('err');
         return reject(err);
       });
   });

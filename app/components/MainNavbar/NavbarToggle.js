@@ -10,7 +10,6 @@ class NavbarToggle extends React.Component {
   }
 
   handleClick() {
-    console.log('click');
     // Dispatcher.dispatch({
     //   actionType: Constants.TOGGLE_SIDEBAR,
     // });
