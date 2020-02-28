@@ -18,14 +18,21 @@ import {
   globalErrorMessage,
   globalInfoMessage,
   requestSetOpenApiSpecs,
+  setCredentials,
 } from 'containers/App/actions';
 import TagEndpointsGroup from 'components/TagEndpointsGroup';
 import { clearRequestData } from 'containers/EndpointPage/actions';
+import { Row, Col } from 'shards-react';
 import makeSelectOpenApiSpecsPage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
-import { selectOpenApiSpecs, selectOpenApi } from '../App/selectors';
+import {
+  selectOpenApiSpecs,
+  selectOpenApi,
+  selectCredentials,
+} from '../App/selectors';
 import OpenApiSpecInput from '../../components/OpenApiSpecInput';
+import AuthorizationCard from '../../components/AuthorizationCard';
 
 export function OpenApiSpecsPage({
   specs,
@@ -33,6 +40,8 @@ export function OpenApiSpecsPage({
   api,
   history,
   dispatchClearRequestData,
+  credentials,
+  dispatchSetCredentials,
 }) {
   useInjectReducer({ key: 'openApiSpecsPage', reducer });
   useInjectSaga({ key: 'openApiSpecsPage', saga });
@@ -43,15 +52,30 @@ export function OpenApiSpecsPage({
 
   return (
     <div>
-      {/* <h1>{JSON.stringify(specs)}</h1> */}
-      {/* <ReactJson src={specs} enableClipboard={false} onEdit={false} /> */}
-      <OpenApiSpecInput
-        specs={specs}
-        api={api}
-        onConfirm={newSpecs => {
-          dispatchRequestSetOpenApiSpecs(newSpecs);
-        }}
-      />
+      <Row>
+        {/* Editor */}
+        <Col lg="6" md="12">
+          <OpenApiSpecInput
+            specs={specs}
+            api={api}
+            onConfirm={newSpecs => {
+              dispatchRequestSetOpenApiSpecs(newSpecs);
+            }}
+          />
+        </Col>
+
+        {/* Sidebar Widgets */}
+        {api.securityDefinitions && (
+          <Col lg="6" md="12">
+            <AuthorizationCard
+              securityDefinitions={api.securityDefinitions}
+              credentials={credentials}
+              dispatchSetCredentials={dispatchSetCredentials}
+            />
+          </Col>
+        )}
+      </Row>
+
       {api ? (
         <div>
           {api.tags.map((tag, idx) => (
@@ -87,6 +111,7 @@ const mapStateToProps = createStructuredSelector({
   openApiSpecsPage: makeSelectOpenApiSpecsPage(),
   specs: selectOpenApiSpecs(),
   api: selectOpenApi(),
+  credentials: selectCredentials(),
 });
 
 function mapDispatchToProps(dispatch) {
@@ -96,6 +121,9 @@ function mapDispatchToProps(dispatch) {
     },
     dispatchClearRequestData() {
       return dispatch(clearRequestData());
+    },
+    dispatchSetCredentials(credential, securityDefinitionName) {
+      return dispatch(setCredentials(credential, securityDefinitionName));
     },
   };
 }

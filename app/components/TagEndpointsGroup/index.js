@@ -24,7 +24,10 @@ import {
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 
-function endpointTypeToTheme(type) {
+function endpointTypeToTheme(type, deprecated) {
+  if (deprecated) {
+    return 'secondary';
+  }
   switch (type) {
     case 'get':
       return 'primary';
@@ -65,6 +68,7 @@ function TagEndpointsGroup({ paths, tag, onEndpointPressed }) {
         {endpoints.map((endpoint, idx) => (
           <ListGroupItem
             action
+            disabled={endpoint.subPathDetails.deprecated}
             key={idx}
             onClick={() => {
               onEndpointPressed(endpoint);
@@ -72,19 +76,30 @@ function TagEndpointsGroup({ paths, tag, onEndpointPressed }) {
           >
             <Row className="px-3">
               <Col lg="12" sm="1" className="user-teams__image my-auto p-0">
-                <Badge outline theme={endpointTypeToTheme(endpoint.type)}>
+                <Badge
+                  outline
+                  theme={endpointTypeToTheme(
+                    endpoint.type,
+                    endpoint.subPathDetails.deprecated,
+                  )}
+                >
                   {endpoint.type.toUpperCase()}
                 </Badge>
               </Col>
 
               {/* <img className="rounded" src={team.image} alt={team.name} /> */}
 
-              <Col className="user-teams__info pl-3">
+              <Col className="user-teams__info pl-4">
                 <h6 className="m-0">{endpoint.path}</h6>
                 <h6 className="text-light">
                   {endpoint.subPathDetails.summary}
                 </h6>
               </Col>
+              {endpoint.subPathDetails.deprecated && (
+                <h6 className="m-0" style={{ color: 'red' }}>
+                  Deprecated endpoint
+                </h6>
+              )}
             </Row>
           </ListGroupItem>
         ))}

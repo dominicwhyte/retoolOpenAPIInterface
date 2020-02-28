@@ -14,6 +14,7 @@ import {
   FormInput,
   FormGroup,
   FormCheckbox,
+  FormTextarea,
   FormSelect,
   Collapse,
   Card,
@@ -26,14 +27,7 @@ import { PulseLoader } from 'react-spinners';
 import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
-function isJsonString(str) {
-  try {
-    JSON.parse(str);
-  } catch (e) {
-    return false;
-  }
-  return true;
-}
+import isJsonString from '../../utils/isJsonString';
 
 function typeToJavascriptType(type) {
   switch (type) {
@@ -53,7 +47,7 @@ function RunEndpointForm({
 }) {
   function componentForParameter(parameter) {
     const name = `${parameter.name} - ${parameter.description}`;
-
+    console.log('parameter', parameter);
     switch (parameter.type) {
       // TODO: add inputs for different cases
       case 'integer':
@@ -67,31 +61,60 @@ function RunEndpointForm({
             type={typeToJavascriptType(parameter.type)}
           />
         );
-      case undefined:
-        if (parameter.schema && parameter.schema.type === 'object') {
+      case 'array': {
+        if (parameter.in === 'query') {
           return (
-            // TODO: should be a json editor eventually
-            <FormInput
+            <FormTextarea
               id={parameter.name}
               name={parameter.name}
+              defaultValue={
+                parameter.items && parameter.items.enum
+                  ? parameter.items.enum.join(', ')
+                  : 'some,comma,separated,values'
+              }
               placeholder={name}
               required={parameter.required}
               type={typeToJavascriptType(parameter.type)}
             />
           );
         }
-      // Fall through otherwise
-      // eslint-disable-next-line no-fallthrough
+        break;
+      }
+      case undefined:
+        {
+          const isJsonSchemaType =
+            parameter.schema.type === 'object' ||
+            parameter.schema.type === 'array';
+          if (parameter.schema && isJsonSchemaType) {
+            const defaultValue =
+              parameter.schema.type === 'object'
+                ? '{\n"someKey": "someValue"\n}'
+                : '[{\n"someKey": "someValue"\n}]';
+            return (
+              // TODO: should be a json editor eventually
+              <FormTextarea
+                id={parameter.name}
+                name={parameter.name}
+                defaultValue={defaultValue}
+                placeholder={name}
+                required={parameter.required}
+                type={typeToJavascriptType(parameter.type)}
+              />
+            );
+          }
+        }
+        break;
       default:
-        return (
-          <FormInput
-            placeholder={`Input type "${parameter.type}" not yet supported`}
-            name={parameter.name}
-            disabled
-            required={parameter.required}
-          />
-        );
+        break;
     }
+    return (
+      <FormInput
+        placeholder={`Input type "${parameter.type}" not yet supported`}
+        name={parameter.name}
+        disabled
+        required={parameter.required}
+      />
+    );
   }
 
   console.log('params', parameters);

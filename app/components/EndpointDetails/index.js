@@ -16,6 +16,7 @@ import {
   Badge,
   Button,
 } from 'shards-react';
+import getSecurityCredentialsForEndpoint from 'utils/getSecurityCredentialsForEndpoint';
 
 function EndpointDetails({ endpoint }) {
   const { responses } = endpoint.subPathDetails;
@@ -45,13 +46,11 @@ function EndpointDetails({ endpoint }) {
             </Col>
           </Row>
           <Row>
-            <Col className="w-50">
-              <span>Phone</span>
-              <span>test</span>
-            </Col>
-            <Col className="w-50">
-              <span>Account Number</span>
-              <span>test</span>
+            <Col className="w-100">
+              <span>Security</span>
+              <span>
+                {getSecurityCredentialsForEndpoint(endpoint).join(', ')}
+              </span>
             </Col>
           </Row>
         </div>

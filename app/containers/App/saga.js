@@ -25,11 +25,9 @@ function validateSpecs(specs) {
 }
 
 export function* setOpenApiSpecsSaga({ specs }) {
-  console.log('setOpenApiSpecs', specs);
   try {
     const api = yield validateSpecs(specs);
-    console.log('api');
-    console.log(api);
+
     yield put(
       globalSuccessMessage(
         `Loaded OpenAPI ${api.info.title}, Version: ${api.info.version}`,

@@ -103,7 +103,7 @@ export function App({
             exact
             path="/"
             render={props => (
-              <WithNavBar title="Some Test" subtitle="Some Sub title">
+              <WithNavBar title="All Endpoints" subtitle="Sorted by tag">
                 <OpenApiSpecsPage {...props} />
               </WithNavBar>
             )}

@@ -36,6 +36,12 @@ const selectOpenApi = () =>
     globalState => globalState.api,
   );
 
+const selectCredentials = () =>
+  createSelector(
+    selectGlobal,
+    globalState => globalState.credentials,
+  );
+
 export {
   selectGlobal,
   selectOpenApi,
@@ -43,4 +49,5 @@ export {
   makeSelectSuccess,
   makeSelectInfo,
   selectOpenApiSpecs,
+  selectCredentials,
 };

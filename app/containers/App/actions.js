@@ -21,6 +21,7 @@ import {
   GLOBAL_INFO_MESSAGE,
   REQUEST_SET_OPEN_API_SPECS,
   SET_OPEN_API_SPECS,
+  SET_CREDENTIALS,
 } from './constants';
 
 /**
@@ -62,5 +63,13 @@ export function setOpenApiSpecs(api, specs) {
     type: SET_OPEN_API_SPECS,
     api,
     specs,
+  };
+}
+
+export function setCredentials(credential, securityDefinitionName) {
+  return {
+    type: SET_CREDENTIALS,
+    credential,
+    securityDefinitionName,
   };
 }

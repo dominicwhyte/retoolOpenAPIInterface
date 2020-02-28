@@ -33,38 +33,33 @@ function OpenApiSpecInput({ onConfirm, specs, api }) {
 
   return (
     <div>
-      <Row className="mt-4">
-        <Col lg="6" sm="12">
-          <Card small className="mb-4 pt-3">
-            <CardHeader className="border-bottom text-center">
-              <h4 className="mb-0">{api ? api.info.title : ''}</h4>
-              <span className="text-muted d-block mb-2">
-                {api ? api.info.version : ''}
-              </span>
-              <Button
-                pill
-                outline
-                size="sm"
-                className="mb-2"
-                onClick={() => {
-                  setOpen(true);
-                }}
-              >
-                Edit
-              </Button>
-            </CardHeader>
-            <ListGroup flush>
-              <ListGroupItem className="p-4">
-                <strong className="text-muted d-block mb-2">
-                  OpenAPI Specification URL
-                </strong>
-                <span>{specs}</span>
-              </ListGroupItem>
-            </ListGroup>
-          </Card>
-        </Col>
-        <Col lg="6" />
-      </Row>
+      <Card small className="mb-4 pt-3">
+        <CardHeader className="border-bottom text-center">
+          <h4 className="mb-0">{api ? api.info.title : ''}</h4>
+          <span className="text-muted d-block mb-2">
+            {api ? api.info.version : ''}
+          </span>
+          <Button
+            pill
+            outline
+            size="sm"
+            className="mb-2"
+            onClick={() => {
+              setOpen(true);
+            }}
+          >
+            Edit
+          </Button>
+        </CardHeader>
+        <ListGroup flush>
+          <ListGroupItem className="p-4">
+            <strong className="text-muted d-block mb-2">
+              OpenAPI Specification URL
+            </strong>
+            <span>{specs}</span>
+          </ListGroupItem>
+        </ListGroup>
+      </Card>
 
       <Modal open={open} toggle={() => setOpen(!open)}>
         <ModalHeader> 👋 Provide your OpenAPI Specification (URL)</ModalHeader>

@@ -1,4 +1,4 @@
-import { FaRoad, FaUsers, FaPlug, FaChartLine } from 'react-icons/fa';
+import { FaPlug } from 'react-icons/fa';
 
 export default function() {
   return [

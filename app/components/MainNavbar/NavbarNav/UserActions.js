@@ -10,7 +10,7 @@ import {
   NavLink,
 } from 'shards-react';
 
-import { FaUsers, FaSignOutAlt } from 'react-icons/fa';
+import { FaSignOutAlt } from 'react-icons/fa';
 
 export default class UserActions extends React.Component {
   constructor(props) {

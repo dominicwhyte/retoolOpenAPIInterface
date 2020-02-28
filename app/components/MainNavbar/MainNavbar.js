@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Container, Navbar, NavbarBrand, Form } from 'shards-react';
-import { FaRoad, FaUsers, FaPlug, FaPencilAlt } from 'react-icons/fa';
 
 import NavbarNav from './NavbarNav/NavbarNav';
 import NavbarToggle from './NavbarToggle';

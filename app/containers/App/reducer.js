@@ -16,6 +16,7 @@ import {
   GLOBAL_ERROR_MESSAGE,
   GLOBAL_SUCCESS_MESSAGE,
   GLOBAL_INFO_MESSAGE,
+  SET_CREDENTIALS,
 } from './constants';
 
 // The initial state of the App
@@ -26,6 +27,7 @@ export const initialState = {
   error: false,
   info: false,
   success: false,
+  credentials: {},
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -44,6 +46,13 @@ const appReducer = (state = initialState, action) =>
       case SET_OPEN_API_SPECS:
         draft.api = action.api;
         draft.specs = action.specs;
+        break;
+      case SET_CREDENTIALS:
+        console.log('delta credentials');
+        console.log(action.credential);
+        draft.credentials[action.securityDefinitionName] = action.credential;
+        console.log('NEW credentials');
+        console.log(draft);
         break;
     }
   });
