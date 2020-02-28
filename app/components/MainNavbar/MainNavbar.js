@@ -29,7 +29,7 @@ const MainNavbar = ({ layout, stickyTop }) => {
                   alt="Shards Dashboard"
                 />
                 <span className="d-none d-md-inline ml-1">
-                  OpenAPI 2 Interface
+                  OpenAPI Interface
                 </span>
               </div>
             </NavbarBrand>
